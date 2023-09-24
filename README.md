@@ -39,9 +39,10 @@ This should open up the web browser
 - Does your sol leverage quantum tech and have an advantage over classical? (Opinion: We should use HHL and talk about how it is asymptotically faster (O(log(N) vs O(N) roughly, we can specify in the slides)))
 - Github code
 
+### Category 4 - Presentation - 20%
+- 10 minute presentation (STRICT) - Opinion: we should have a demo probably (recorded, so that we don't have any mistakes)
 
 
-10 minute presentation (STRICT) - Opinion: we should have a demo probably (recorded, so that we don't have any mistakes)
 Event space is reserved on saturday in the morning, so we can use until noon to finish up our project and presentation
 
 ## Todo
