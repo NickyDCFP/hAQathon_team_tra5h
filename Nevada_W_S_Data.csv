@@ -1,0 +1,123 @@
+﻿City,Latitude,Fixed Tilt Sun Hours Per Day,1-Axis Tilt Sun Hours Per Day,2-Axis Tilt Sun Hours Per Day,Average Wind Speed, Population
+"Alamo, NV ",37.4,6,7.8,8.8,20.81 mph,939
+"Amargosa Valley, NV",36.6,5.8,7.8,9.1,21.93 mph,1232
+"Austin, NV ",39.5,5.9,7.9,8.5,15.82 mph,74
+"Baker, NV ",39,6.1,8.3,8.7,20.49 mph,23
+"Battle Mountain, NV ",40.6,5.9,8.2,8.4,12.09 mph,"3,253"
+"Beatty, NV ",36.9,6.2,7.7,8.9,22.12 mph,"1,021"
+"Blue Diamond, NV ",36,6.5,8.8,9,20.18 mph,274
+"Boulder City, NV ",35.8,6.6,7.8,9.2,15.23 mph,"15,162"
+"Bunkerville, NV ",36.7,5.8,8.4,8.6,15.08 mph,"1,431"
+"Cal Nev Ari, NV ",35.3,6.7,7.9,9.1,16.79 mph,125
+"Caliente, NV ",37.6,6.9,8.1,9.1,18.71 mph,"1,140"
+"Carlin, NV ",40.7,6,7.6,8.9,15.19 mph,"2,409"
+"Carson City, NV ",39.2,5.8,7.8,8.1,16.02 mph,"54,634"
+"Cold Springs, NV ",39.7,6.3,8.1,8.8,15.41 mph,"8,606"
+"Crescent Valley, NV ",40.4,6.5,8.4,8.5,13.18 mph,388
+"Crystal Bay, NV ",39.2,5.8,7.8,8.1,15.23 mph,193
+"Dayton, NV ",39.3,6.7,8.4,9.2,15.74 mph,"8,972"
+"Denio, NV ",42,6.7,8.1,8.8,20.82 mph,44
+"Dyer, NV ",37.6,6.9,8.1,9.1,18.78 mph,149
+"East Valley, NV ",36.1,6.7,8.5,8.6,16.47 mph,"1,478"
+"Elko, NV ",40.83,5.4,7.3,7.5,17.98 mph,"19,308"
+"Ely, NV ",39.38,5.8,7.8,8.1,20.44 mph,"4,250"
+"Empire, NV ",40.6,5.9,8.2,8.4,16.61 mph,41
+"Enterprise, NV ",36,6.5,8.8,9,17.71 mph,"124,564"
+"Eureka, NV ",39.5,5.9,7.9,8.5,17.36 mph,423
+"Fallon, NV ",39.5,5.9,7.9,8.5,16.06 mph,"8,451"
+"Fernley, NV ",39.6,6.6,7.7,9.1,16.86 mph,"19,184"
+"Gabbs, NV ",38.9,6.2,7.8,8.7,16.85 mph,109
+"Gardnerville Ranchos, NV ",38.9,6.2,7.8,8.7,16.16 mph,"11,040"
+"Gardnerville, NV ",38.9,6.2,7.8,8.7,16.56 mph,"5,761"
+"Genoa, NV ",39,6.1,8.3,8.7,16.01 mph,"1,104"
+"Gerlach, NV ",40.6,5.9,8.2,8.4,16.75 mph,168
+"Glenbrook, NV ",39.1,6.4,8.2,8.4,15.87 mph,215
+"Golconda, NV ",41,6.5,8.2,8.8,16.20 mph,271
+"Golden Valley, NV ",39.6,6.6,7.7,9.1,15.24 mph,"1,993"
+"Goldfield, NV ",37.7,6.6,8.3,8.6,19.47 mph,412
+"Goodsprings, NV ",35.8,6.6,7.8,9.2,19.18 mph,102
+"Hawthorne, NV ",38.5,6.7,7.7,8.3,16.23 mph,"3,272"
+"Henderson, NV ",36,6.5,8.8,9,16.17 mph,"266,245"
+"Hiko, NV ",37.6,6.9,8.1,9.1,20.83 mph,105
+"Humboldt, NV ",40.5,6.5,7.6,8.7,15.47 mph,29
+"Imlay, NV ",40.7,6,7.6,8.9,14.98 mph,80
+"Incline Village, NV ",39.3,6.7,8.4,9.2,15.49 mph,"8,389"
+"Indian Hills, NV ",39.1,6.4,8.2,8.4,16.35 mph,"6,007"
+"Indian Springs, NV ",36.6,5.8,7.8,9.1,22.80 mph,785
+"Jackpot, NV ",42,6.7,8.1,8.8,18.31 mph,"1,490"
+"Johnson Lane, NV ",39,6.1,8.3,8.7,16.50 mph,"6,319"
+"Kingsbury, NV ",39,6.1,8.3,8.7,15.80 mph,"2,027"
+"Kingston, NV ",39.2,5.8,7.8,8.1,16.29 mph,190
+"Lakeridge, NV ",39,6.1,8.3,8.7,15.62 mph,217
+"Lamoille, NV ",40.7,6,7.6,8.9,19.84 mph,115
+"Las Vegas, NV ",36.08,6.5,8.8,9.1,19.64 mph,"597,353"
+"Laughlin, NV ",35.1,6.3,7.8,9.1,16.59 mph,"7,567"
+"Lemmon Valley, NV ",39.7,6.3,8.1,8.8,15.64 mph,"5,585"
+"Logandale, NV",36.6,5.8,7.8,9.1,15.22 mph,"3,571"
+"Lovelock, NV ",40.2,6.5,8,8.4,16.19 mph,"2,319"
+"Lund, NV ",38.9,6.2,7.8,8.7,20.48 mph,203
+"Luning, NV",38.5,6.7,7.7,8.3,17.34 mph,87
+"Manhattan, NV",38.5,6.7,7.7,8.3,17.62 mph,124
+"Mc Dermitt, NV",42,6.7,8.1,8.8,21.15 mph,153
+"Mc Gill, NV",39.4,5.9,7.9,8.4,19.49 mph,"1,828"
+"Mesquite, NV ",36.8,6.3,7.7,8.8,15.63 mph,"16,072"
+"Mina, NV ",38.4,6.7,8.2,8.9,17.42 mph,33
+"Minden, NV ",39,6.1,8.3,8.7,16.43 mph,"3,408"
+"Moapa Town, NV ",36.8,6.3,7.7,8.8,16.06 mph,"1,087"
+"Moapa Valley, NV ",36.6,5.8,7.8,9.1,14.80 mph,"6,772"
+"Mogul, NV ",39.5,5.9,7.9,8.5,15.59 mph,"1,649"
+"Montello, NV ",41.3,5.8,7.8,8.7,18.87 mph,83
+"Mount Charleston, NV ",36.3,6.8,7.7,8.7,21.08 mph,317
+"Mountain City, NV",41.8,6.1,8.3,8.6,22.24 mph,14
+"Nelson, NV ",35.7,6.8,7.7,8.6,15.87 mph,94
+"Nixon, NV ",39.8,6.5,7.9,8.8,16.04 mph,336
+"North Las Vegas, NV ",36.3,6.8,7.7,8.7,17.28 mph,"223,336"
+"Oasis, NV ",41,6.5,8.2,8.8,20.28 mph,29
+"Orovada, NV ",41.6,6.2,8.3,8.7,20.11 mph,151
+"Osino, NV ",40.9,5.5,7.4,7.7,18.24 mph,754
+"Overton, NV",36.5,6.3,8.1,8.5,14.67 mph,"5,544"
+"Owyhee, NV ",41.9,6.9,8,8.7,22.21 mph,"1,276"
+"Pahrump, NV ",36.2,6.1,7.7,8.3,21.63 mph,"35,009"
+"Panaca, NV ",37.8,6.1,8.2,9.2,17.98 mph,"1,477"
+"Paradise Valley, NV ",41.5,6.8,7.8,8.8,19.83 mph,147
+"Paradise, NV ",36.1,6.7,8.5,8.6,17.59 mph,"223,182"
+"Pioche, NV ",38,6.1,8.4,8.6,18.94 mph,909
+"Preston, NV ",38.9,6.2,7.8,8.7,20.51 mph,72
+"Rachel, NV ",37.7,6.6,8.3,8.6,20.98 mph,54
+"Reno, NV ",39.5,5.8,7.9,8.2,15.86 mph,"231,103"
+"Round Mountain, NV",38.7,6.5,8.2,8.5,17.81 mph,"2,345"
+"Ruth, NV ",39.3,6.7,8.4,9.2,20.35 mph,500
+"Sandy Valley, NV ",35.8,6.6,7.8,9.2,20.44 mph,"1,354"
+"Schurz, NV ",38.9,6.2,7.8,8.7,16.42 mph,728
+"Searchlight, NV ",35.5,5.7,7.8,8.6,16.42 mph,431
+"Silver City, NV ",39.3,6.7,8.4,9.2,15.60 mph,219
+"Silver Peak, NV ",37.8,6.1,8.2,9.2,20.45 mph,91
+"Silver Springs, NV ",39.4,5.9,7.9,8.4,16.57 mph,"5,605"
+"Skyland, NV ",39,6.1,8.3,8.7,15.55 mph,245
+"Spanish Springs, NV ",39.7,6.3,8.1,8.8,15.28 mph,"15,322"
+"Sparks, NV ",39.6,6.6,7.7,9.1,15.37 mph,"92,236"
+"Spring Creek, NV ",40.7,6,7.6,8.9,19.27 mph,"14,012"
+"Spring Valley, NV ",36.1,6.7,8.5,8.6,19.16 mph,"183,937"
+"Stagecoach, NV ",39.4,5.9,7.9,8.4,16.08 mph,"1,581"
+"Stateline, NV ",39,6.1,8.3,8.7,15.75 mph,"1,017"
+"Sun Valley, NV ",39.6,6.6,7.7,9.1,15.22 mph,"18,778"
+"Sunrise Manor, NV ",36.2,6.1,7.7,8.3,16.95 mph,"187,647"
+"Sutcliffe, NV ",39.9,6.6,7.6,8.3,15.71 mph,257
+"Tonopah, NV ",38.07,6.1,8.4,8.6,19.74 mph,"2,557"
+"Topaz Lake, NV ",38.7,6.5,8.2,8.5,15.41 mph,240
+"Tuscarora, NV",41.3,5.8,7.8,8.7,16.53 mph,89
+"Ursine, NV ",38,6.1,8.4,8.6,18.16 mph,135
+"Valmy, NV ",40.8,5.4,7.3,8.2,12.35 mph,7
+"Verdi, NV ",39.5,5.9,7.9,8.5,15.02 mph,"1,509"
+"Virginia City, NV ",39.3,6.7,8.4,9.2,15.67 mph,673
+"Wadsworth, NV ",39.6,6.6,7.7,9.1,16.33 mph,927
+"Walker Lake, NV ",38.6,6.4,7.7,9.2,16.38 mph,275
+"Washoe Valley, NV ",39.3,6.7,8.4,9.2,15.87 mph,"3,434"
+"Wellington, NV",38.8,6.2,8.2,8.5,15.81 mph,"2,977"
+"Wells, NV ",41.1,5.9,7.8,9.2,20.20 mph,"1,269"
+"West Wendover, NV ",40.7,6,7.6,8.9,20.86 mph,"4,448"
+"Whitney, NV ",36.1,6.7,8.5,8.6,16.70 mph,"39,458"
+"Winchester, NV ",36.1,6.7,8.5,8.6,17.50 mph,"28,111"
+"Winnemucca, NV ",40.9,5.5,7.4,7.7,16.31 mph,"7,736"
+"Yerington, NV ",39,6.1,8.3,8.7,16.92 mph,"3,030"
+"Zephyr Cove, NV ",39,6.1,8.3,8.7,15.53 mph,440
