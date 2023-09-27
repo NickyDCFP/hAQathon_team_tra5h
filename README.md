@@ -4,15 +4,30 @@
 
 ## Running Instructions
 
-First run 
+### If it is your first time:
+First run (for the backend)
+```
+cd Backend
+pip install -r requirements.txt
+python server.py
+```
+
+Then you can run in a separate terminal (for the frontend)
+```
+cd Frontend
+npm install
+npm run dev
+```
+
+### Otherwise
+First run (for the backend)
 ```
 cd Backend
 python server.py
 ```
 
-Then you can run
+Then you can run in a separate terminal (for the frontend)
 ```
-cd ../
 cd Frontend
 npm run dev
 ```
