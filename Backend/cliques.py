@@ -20,6 +20,7 @@ def get_sample_graph() -> np.ndarray:
     adj_matrix[2][11] = 1
     for i in range(100):
         adj_matrix[i][i] = 0
+    return adj_matrix
 
 def get_cliques_deterministic(adj_matrix: np.ndarray) -> list[list[int]]:
     """
