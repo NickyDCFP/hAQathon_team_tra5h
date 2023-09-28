@@ -1,34 +1,35 @@
 import { useState, useEffect } from "react";
 
 
-const Parameters = () => {
+const Parameters = ({setRelevantData}) => {
     const [renewableOption, setRenewableOption] = useState("solar");
     const [percentOfOperableLand, setPercentOfOperableLand] = useState(50);
     const [data, setdata] = useState({solar: [], wind: [], geothermal: []});
+    
 
     useEffect(() => {
-        console.log("hi")
         fetch("/api/getsortedlists").then((res) =>{
-            console.log("hi", res);
+            res.json().then((newData) => {
+                setdata({
+                    solar: newData["solar"],
+                    wind: newData["wind"],
+                    geothermal: newData["geothermal"],
+                });
+            })
         })
-            // res.json().then((newData) => {
-            //     console.log("hi", newData);
-            //     setdata({
-            //         solar: newData["solar"],
-            //         wind: newData["wind"],
-            //         geothermal: newData["geothermal"],
-            //     });
-            // })
-        // )
     }, [renewableOption]);
+
+    useEffect(() => {
+        setRelevantData(getPercent(data[renewableOption], percentOfOperableLand));
+        console.log("hi")
+    }, [percentOfOperableLand, renewableOption, data]);
+
+    function getPercent(array, percent) {
+        return array.slice(0, Math.ceil(array.length * percent / 100));
+    }
 
     return (
         <>
-            <div>
-                <p>{data.solar}</p>
-                <p>{data.wind}</p>
-                <p>{data.geothermal}</p>
-            </div>
             <h1>Parameters:</h1>
             <form action="POST">
                 <h2>Renewable Option:</h2>
