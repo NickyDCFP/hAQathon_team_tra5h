@@ -21,7 +21,6 @@ const Parameters = ({setRelevantData}) => {
 
     useEffect(() => {
         setRelevantData(getPercent(data[renewableOption], percentOfOperableLand));
-        console.log("hi")
     }, [percentOfOperableLand, renewableOption, data]);
 
     function getPercent(array, percent) {

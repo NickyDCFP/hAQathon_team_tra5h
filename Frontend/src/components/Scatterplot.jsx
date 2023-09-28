@@ -11,17 +11,17 @@ import { Scatter } from 'react-chartjs-2';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-export const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-  },
-};
-
-
 export function Scatterplot({relevantData}) {
     let theData = relevantData.map( data=> ({x: data[0], y: data[1]}));
+
+    const options = {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+    };
+
     const data = {
         datasets: [
           {
@@ -31,5 +31,9 @@ export function Scatterplot({relevantData}) {
           },
         ],
       };
-    return <Scatter options={options} data={data} />;
+    return (
+        <div className="scatterplot-container">
+            <Scatter options={options} data={data} />
+        </div>
+    );
 }
