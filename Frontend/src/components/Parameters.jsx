@@ -10,14 +10,13 @@ import { useState, useEffect } from "react";
 */
 const Parameters = ({setRelevantData}) => {
     // const [renewableOption, setRenewableOption] = useState("solar");
-    const [percentOfOperableLand, setPercentOfOperableLand] = useState(50);
-    const [data, setdata] = useState({'Cities': [], 'Sorted Cliques': [{"Cities": ["LA"]}]});
+    const [numToMake, setNumToMake] = useState(5);
+    const [data, setdata] = useState({'Cities': [], 'Sorted Cliques': [{}]});
     
     // Fetches the data from the backend and stores it in the data state whenever the renewable option changes.
     useEffect(() => {
         fetch("/api/data").then((res) =>{
             res.json().then((newData) => {
-                console.log(newData)
                 setdata({
                     "Cities": newData["Cities"],
                     "Sorted Cliques": newData["Sorted Cliques"]
@@ -28,29 +27,16 @@ const Parameters = ({setRelevantData}) => {
 
     // Whenever any of the options changes, relevant data is updated.
     useEffect(() => {
-        let sArr = makeSortedArray(data["Cities"], data["Sorted Cliques"])
-        let newD = getPercent(sArr, percentOfOperableLand);
-        let rel = [];
-        for(let i = 0; i < newD.length; i++) {
-            // Find the city in a binary search
-            let low = 0;
-            let high = data["Cities"].length - 1;
-            let mid = Math.floor((low + high) / 2);
-            while(low <= high) {
-                if(data["Cities"][mid]["City"] === newD[i]["City"]) {
-                    rel.push(data["Cities"][mid]);
-                    break;
-                } else if(data["Cities"][mid]["City"] < newD[i]["City"]) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
-                mid = Math.floor((low + high) / 2);
+        // let newD = makeSortedArray(data["Cities"], data["Sorted Cliques"])
+        if(data["Cities"].length !== 0) {
+            let rel = [];
+            for(let i = 0; i < numToMake; i++) {
+                rel.push(getRelevantInfo(data["Sorted Cliques"][i], data["Cities"]));
             }
+            console.log(rel)
+            setRelevantData(rel);
         }
-        console.log(rel)
-        setRelevantData(newD);
-    }, [percentOfOperableLand, data]);
+    }, [numToMake, data]);
 
     /*
         Returns the first percent of an array.
@@ -58,44 +44,85 @@ const Parameters = ({setRelevantData}) => {
             array - The array to be sliced.
             percent - The percent of the array to be returned.
     */
-    // function getPercent(cliques, percent) {
-    //     for(let i = 0; i < percent; i++) {
-    //         if(i > cliques.length) {
-    //             break;
-    //         }
-    //         for(let j = 0; j < cliques[i]["Cities"].length; j++) {
-    //             console.log(cliques[i]["Cities"][j])
-    //         }
-    //     }
-    // }
 
-    function getPercent(array, percent) {
-        return array.slice(0, Math.ceil(array.length * percent / 100));
-    }
-
-    function makeSortedArray(cities, cliques) {
-        let sortedArray = [];
-        for(let i = 0; i < cliques.length; i++) {
-            for(let j = 0; j < cliques[i]["Cities"].length; j++) {
-                for(let k = 0; k < cities.length; k++) {
-                    if(cliques[i]["Cities"][j] === cities[k]["City"]) {
-                        sortedArray.push(cities[k]);
-                    }
+    /*
+        Takes a clique and finds the relevant information to be sent to create circle markers.
+    */
+    function getRelevantInfo(clique, cities) {
+        let x = 0;
+        let y = 0;
+        let tot = 0;
+        // Get average location
+        for(let i = 0; i < clique["Cities"].length; i++) {
+            let city = findCity(clique["Cities"][i], cities);
+            if(city !== undefined) {
+                x += city["Latitude"];
+                y += city["Longitude"];
+                tot++;
+            }
+        }
+        x /= tot;
+        y /= tot;
+        let radius = 0;
+        // Find max distance from center
+        for(let i = 0; i < clique["Cities"].length; i++) {
+            let city = findCity(clique["Cities"][i], cities)
+            if(city !== undefined) {
+                let dist = Math.sqrt(Math.pow(city["Latitude"] - x, 2) + Math.pow(city["Longitude"] - y, 2));
+                if(dist > radius) {
+                    radius = dist;
                 }
             }
         }
-        return sortedArray;
+        
+        return {
+            "x": x,
+            "y": y,
+            "radius": radius,
+            "cities": clique["Cities"],
+            "wind": clique["Mean Wind Cubed Per Capita"]
+        }
     }
 
+    // function makeSortedArray(cities, cliques, numToMake) {
+    //     let sortedArray = [];
+    //     for(let i = 0; i < numToMake; i++) {
+    //         for(let j = 0; j < cliques[i]["Cities"].length; j++) {
+    //             for(let k = 0; k < cities.length; k++) {
+    //                 if(cliques[i]["Cities"][j] === cities[k]["City"]) {
+    //                     sortedArray.push(cities[k]);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return sortedArray;
+    // }
+
+    // Finds a city with binary search and returns its relevant information
+    function findCity(toFind, cities) {
+        let low = 0;
+        let high = cities.length - 1;
+        let mid = Math.floor((low + high) / 2);
+        while(low <= high) {
+            if(cities[mid]["City"] === toFind) {
+                return cities[mid]
+            } else if(cities[mid]["City"] < toFind) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+            mid = Math.floor((low + high) / 2);
+        }
+}
 
     return (
         <>
             <h1>Parameters:</h1>
             <form action="POST">
                 <div className="slidecontainer">
-                    <h2>Percentage of Operatable Land: {percentOfOperableLand}%</h2>
-                    <input type="range" min="1" max="100" className="slider" id="myRange" value={percentOfOperableLand} 
-                    onChange={e => setPercentOfOperableLand(e.target.value)}/>
+                    <h2>Percentage of Operatable Land: {numToMake * 10}%</h2>
+                    <input type="range" min="1" max="10" className="slider" id="myRange" value={numToMake} 
+                    onChange={e => setNumToMake(e.target.value)}/>
                 </div>
             </form>
         </>
