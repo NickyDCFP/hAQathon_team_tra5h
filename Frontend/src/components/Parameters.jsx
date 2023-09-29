@@ -33,7 +33,6 @@ const Parameters = ({setRelevantData}) => {
             for(let i = 0; i < numToMake; i++) {
                 rel.push(getRelevantInfo(data["Sorted Cliques"][i], data["Cities"]));
             }
-            console.log(rel)
             setRelevantData(rel);
         }
     }, [numToMake, data]);

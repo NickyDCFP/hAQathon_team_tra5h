@@ -7,7 +7,6 @@ import ScatterMap from './components/ScatterMap';
 
 function App() {
 	const [relevantData, setRelevantData] = useState(null);
-	console.log(relevantData)
   return (
     <>
 		<h1>Energy SPECTator</h1>
