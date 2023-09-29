@@ -1,6 +1,6 @@
 # Team TRA5H
-
-Project created for the NYU Tandon's Haqathon, a hackathon focused on quantum computing. Our project is a web application that utilizes quantum algorithms combined with classical techniques to help push towards the development of sustainable, renewable energy and reduce carbon emissions. We will be using quantum phase estimation to greatly increase the efficiency of finding eigenvalues. We will then use these eigenvalues to find cliques and thus find the best areas to place renewable energy farms such as wind energy.
+Keywords: Quantum Spectral Graph Theory, Probabilistic Clique Finding, Variational Quantum Eigensolvers, Renewable Energy, Climate Week
+Project created for the NYU Tandon's hAQathon, a hackathon focused on quantum computing for sustainiability. Our project is a web application that utilizes quantum algorithms combined with classical techniques to help push towards the development of sustainable, renewable energy and reduce carbon emissions. We will be using variational quantum eigensolvers to greatly increase the efficiency of finding eigenvalues. We will then use these eigenvalues to proboabilistically find cliques and thus find renewable energy hotspots and cold spots to encourage the redistribution of energy, as was mentioned as a major issue during NYC Climate Week 2023.
 
 ## Running Instructions
 
