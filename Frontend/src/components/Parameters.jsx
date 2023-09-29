@@ -20,7 +20,8 @@ const Parameters = ({setRelevantData}) => {
     }, [renewableOption]);
 
     useEffect(() => {
-        setRelevantData(getPercent(data[renewableOption], percentOfOperableLand));
+        let newD = data[renewableOption].map(data=> ({city: "", x: data[0], y: data[1]}));
+        setRelevantData(getPercent(newD, percentOfOperableLand));
     }, [percentOfOperableLand, renewableOption, data]);
 
     function getPercent(array, percent) {

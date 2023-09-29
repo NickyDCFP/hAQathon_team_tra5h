@@ -24,7 +24,7 @@ def getSortedLists():
 def getRandomSample():
     lst = []
     for i in range(100):
-        lst.append([random.randrange(0, 200, 1) / 10, random.randrange(0, 200, 1) / 10])
+        lst.append([random.randrange(300, 500, 1) / 10, random.randrange(-1300, -1100, 1) / 10])
     return lst
 
 if __name__ == '__main__':

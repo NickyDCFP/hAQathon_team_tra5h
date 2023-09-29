@@ -25,7 +25,7 @@ export function Scatterplot({relevantData}) {
     const data = {
         datasets: [
           {
-            label: 'data yay!',
+            label: 'Viable Location',
             data: theData,
             backgroundColor: 'rgba(255, 99, 132, 1)',
           },
