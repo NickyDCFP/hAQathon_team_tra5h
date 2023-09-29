@@ -7,12 +7,15 @@ import ScatterMap from './components/ScatterMap';
 
 function App() {
 	const [relevantData, setRelevantData] = useState(null);
+	const [notableLocations, setNotableLocations] = useState(null);
+	console.log(notableLocations)
   return (
     <>
 		<h1>Energy SPECTator</h1>
 		<h2>Currently operational for recommending wind farm locations in California</h2>
-		<Parameters setRelevantData={setRelevantData}/>
-		{relevantData && <ScatterMap locationsToHighlight={relevantData} />}
+		<p>Circles signify large regions to build wind farms while the markers are notable cities that have an extraordinarily large wind speed compared to population.</p>
+		<Parameters setRelevantData={setRelevantData} setNotableLocations={setNotableLocations}/>
+		{relevantData && <ScatterMap locationsToHighlight={relevantData} notableLocations={notableLocations}/>}
     </>
   );
 }
