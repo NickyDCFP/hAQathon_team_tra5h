@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Parameters from './components/Parameters';
-// import { Scatterplot } from './components/Scatterplot';
-import Choropleth from './components/Choropleth';
+import ScatterMap from './components/ScatterMap';
 
 function App() {
 	const [relevantData, setRelevantData] = useState([]);
@@ -10,11 +9,7 @@ function App() {
   return (
     <>
 		<Parameters setRelevantData={setRelevantData}/>
-		{/* <div id='map-container'>
-			<Scatterplot relevantData={relevantData}/>
-		</div> */}
-
-		<Choropleth citiesToHighlight={relevantData} />
+		<ScatterMap citiesToHighlight={relevantData} />
     </>
   );
 }
