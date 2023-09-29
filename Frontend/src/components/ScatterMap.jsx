@@ -15,7 +15,7 @@ const ScatterMap = ({ locationsToHighlight }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {locationsToHighlight.map((location) => (
-        <Circle center={[location.x, location.y]} radius={location.radius * 111,139000 / 2}>
+        <Circle center={[location.x, location.y]} radius={location.radius * 111,139000 / 2} color={location.color}>
           <Popup>
             Mean Wind Cubed Per Capita: {location.wind} <br />
             Consists of {location.cities.length} cities.

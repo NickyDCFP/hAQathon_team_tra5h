@@ -12,6 +12,10 @@ const Parameters = ({setRelevantData}) => {
     // const [renewableOption, setRenewableOption] = useState("solar");
     const [numToMake, setNumToMake] = useState(5);
     const [data, setdata] = useState({'Cities': [], 'Sorted Cliques': [{}]});
+
+    const colors = [
+        "#ff0000", "#ff3023", "#ff483a", "#ff5c50", "#ff6e64", "#ff8078", "#ff908b", "#ffa09d", "#ffb0ae", "#ffbfbf"
+    ];
     
     // Fetches the data from the backend and stores it in the data state whenever the renewable option changes.
     useEffect(() => {
@@ -32,17 +36,11 @@ const Parameters = ({setRelevantData}) => {
             let rel = [];
             for(let i = 0; i < numToMake; i++) {
                 rel.push(getRelevantInfo(data["Sorted Cliques"][i], data["Cities"]));
+                rel[rel.length - 1]["color"] = colors[i];
             }
             setRelevantData(rel);
         }
     }, [numToMake, data]);
-
-    /*
-        Returns the first percent of an array.
-        Parameters:
-            array - The array to be sliced.
-            percent - The percent of the array to be returned.
-    */
 
     /*
         Takes a clique and finds the relevant information to be sent to create circle markers.
@@ -79,23 +77,9 @@ const Parameters = ({setRelevantData}) => {
             "y": y,
             "radius": radius,
             "cities": clique["Cities"],
-            "wind": clique["Mean Wind Cubed Per Capita"]
+            "wind": clique["Mean Wind Cubed Per Capita"],
         }
     }
-
-    // function makeSortedArray(cities, cliques, numToMake) {
-    //     let sortedArray = [];
-    //     for(let i = 0; i < numToMake; i++) {
-    //         for(let j = 0; j < cliques[i]["Cities"].length; j++) {
-    //             for(let k = 0; k < cities.length; k++) {
-    //                 if(cliques[i]["Cities"][j] === cities[k]["City"]) {
-    //                     sortedArray.push(cities[k]);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return sortedArray;
-    // }
 
     // Finds a city with binary search and returns its relevant information
     function findCity(toFind, cities) {
