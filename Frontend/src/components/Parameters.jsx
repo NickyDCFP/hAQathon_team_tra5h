@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
     This component enables the users to adjust the amount and type of data they will be viewing.
     
     Parameters:
-        setRelevantData - Setter for the useState that will be storing the filtered data
-        
+        setRelevantData - Setter for the useState that will be storing the filtered data. 
+            RelevantData should be in the following format:
+                A list of city objects that have a name, x, and y coordinate. x -> latitude, y -> longitude
 */
 const Parameters = ({setRelevantData}) => {
     const [renewableOption, setRenewableOption] = useState("solar");
