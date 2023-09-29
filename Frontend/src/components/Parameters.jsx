@@ -17,7 +17,6 @@ const Parameters = ({setRelevantData}) => {
     useEffect(() => {
         fetch("/api/data").then((res) =>{
             res.json().then((newData) => {
-                console.log(newData)
                 setdata({
                     "Cities": newData["Cities"],
                     "Sorted Cliques": newData["Sorted Cliques"]
@@ -48,7 +47,6 @@ const Parameters = ({setRelevantData}) => {
                 mid = Math.floor((low + high) / 2);
             }
         }
-        console.log(rel)
         setRelevantData(newD);
     }, [percentOfOperableLand, data]);
 
@@ -58,17 +56,6 @@ const Parameters = ({setRelevantData}) => {
             array - The array to be sliced.
             percent - The percent of the array to be returned.
     */
-    // function getPercent(cliques, percent) {
-    //     for(let i = 0; i < percent; i++) {
-    //         if(i > cliques.length) {
-    //             break;
-    //         }
-    //         for(let j = 0; j < cliques[i]["Cities"].length; j++) {
-    //             console.log(cliques[i]["Cities"][j])
-    //         }
-    //     }
-    // }
-
     function getPercent(array, percent) {
         return array.slice(0, Math.ceil(array.length * percent / 100));
     }
