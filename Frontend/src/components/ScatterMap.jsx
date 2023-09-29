@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 /*
@@ -7,17 +7,20 @@ import 'leaflet/dist/leaflet.css';
   Parameters:
     citiesToHighlight - A list of city objects that have a name, x, and y coordinate. x -> latitude, y -> longitude
 */
-const ScatterMap = ({ citiesToHighlight }) => {
+const ScatterMap = ({ locationsToHighlight }) => {
   return (
-    <MapContainer center={[0, 0]} zoom={2} style={{ height: '500px', width: '100%' }}>
+    <MapContainer center={[37, -119]} zoom={6} style={{ height: '500px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {citiesToHighlight.map((city, index) => (
-        <Marker key={index} position={[city.x, city.y]}>
-          <Popup>{city.name}</Popup>
-        </Marker>
+      {locationsToHighlight.map((location) => (
+        <Circle center={[location.x, location.y]} radius={location.radius * 111,139000 / 2} color={location.color}>
+          <Popup>
+            Mean Wind Cubed Per Capita: {location.wind} <br />
+            Consists of {location.cities.length} cities.
+          </Popup>
+        </Circle>
       ))}
     </MapContainer>
   );

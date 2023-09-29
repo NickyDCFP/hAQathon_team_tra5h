@@ -9,53 +9,103 @@ import { useState, useEffect } from "react";
                 A list of city objects that have a name, x, and y coordinate. x -> latitude, y -> longitude
 */
 const Parameters = ({setRelevantData}) => {
-    const [renewableOption, setRenewableOption] = useState("solar");
-    const [percentOfOperableLand, setPercentOfOperableLand] = useState(50);
-    const [data, setdata] = useState({solar: [], wind: [], geothermal: []});
+    // const [renewableOption, setRenewableOption] = useState("solar");
+    const [numToMake, setNumToMake] = useState(5);
+    const [data, setdata] = useState({'Cities': [], 'Sorted Cliques': [{}]});
+
+    const colors = [
+        "#ff0000", "#ff3023", "#ff483a", "#ff5c50", "#ff6e64", "#ff8078", "#ff908b", "#ffa09d", "#ffb0ae", "#ffbfbf"
+    ];
     
     // Fetches the data from the backend and stores it in the data state whenever the renewable option changes.
     useEffect(() => {
-        fetch("/api/getsortedlists").then((res) =>{
+        fetch("/api/data").then((res) =>{
             res.json().then((newData) => {
                 setdata({
-                    solar: newData["solar"],
-                    wind: newData["wind"],
-                    geothermal: newData["geothermal"],
+                    "Cities": newData["Cities"],
+                    "Sorted Cliques": newData["Sorted Cliques"]
                 });
             })
         })
-    }, [renewableOption]);
+    }, []);
 
     // Whenever any of the options changes, relevant data is updated.
     useEffect(() => {
-        let newD = data[renewableOption].map(data=> ({city: "", x: data[0], y: data[1]}));
-        setRelevantData(getPercent(newD, percentOfOperableLand));
-    }, [percentOfOperableLand, renewableOption, data]);
+        // let newD = makeSortedArray(data["Cities"], data["Sorted Cliques"])
+        if(data["Cities"].length !== 0) {
+            let rel = [];
+            for(let i = 0; i < numToMake; i++) {
+                rel.push(getRelevantInfo(data["Sorted Cliques"][i], data["Cities"]));
+                rel[rel.length - 1]["color"] = colors[i];
+            }
+            setRelevantData(rel);
+        }
+    }, [numToMake, data]);
 
     /*
-        Returns the first percent of an array.
-        Parameters:
-            array - The array to be sliced.
-            percent - The percent of the array to be returned.
+        Takes a clique and finds the relevant information to be sent to create circle markers.
     */
-    function getPercent(array, percent) {
-        return array.slice(0, Math.ceil(array.length * percent / 100));
+    function getRelevantInfo(clique, cities) {
+        let x = 0;
+        let y = 0;
+        let tot = 0;
+        // Get average location
+        for(let i = 0; i < clique["Cities"].length; i++) {
+            let city = findCity(clique["Cities"][i], cities);
+            if(city !== undefined) {
+                x += city["Latitude"];
+                y += city["Longitude"];
+                tot++;
+            }
+        }
+        x /= tot;
+        y /= tot;
+        let radius = 0;
+        // Find max distance from center
+        for(let i = 0; i < clique["Cities"].length; i++) {
+            let city = findCity(clique["Cities"][i], cities)
+            if(city !== undefined) {
+                let dist = Math.sqrt(Math.pow(city["Latitude"] - x, 2) + Math.pow(city["Longitude"] - y, 2));
+                if(dist > radius) {
+                    radius = dist;
+                }
+            }
+        }
+        
+        return {
+            "x": x,
+            "y": y,
+            "radius": radius,
+            "cities": clique["Cities"],
+            "wind": clique["Mean Wind Cubed Per Capita"],
+        }
     }
+
+    // Finds a city with binary search and returns its relevant information
+    function findCity(toFind, cities) {
+        let low = 0;
+        let high = cities.length - 1;
+        let mid = Math.floor((low + high) / 2);
+        while(low <= high) {
+            if(cities[mid]["City"] === toFind) {
+                return cities[mid]
+            } else if(cities[mid]["City"] < toFind) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+            mid = Math.floor((low + high) / 2);
+        }
+}
 
     return (
         <>
             <h1>Parameters:</h1>
             <form action="POST">
-                <h2>Renewable Option:</h2>
-                <select name="renewable-option" value={renewableOption} onChange={e => setRenewableOption(e.target.value)}>
-                    <option value="solar">Solar</option>
-                    <option value="wind">Wind</option>
-                    <option value="geothermal">Geothermal</option>
-                </select>
                 <div className="slidecontainer">
-                    <h2>Percent of Operable Land: {percentOfOperableLand}%</h2>
-                    <input type="range" min="1" max="100" className="slider" id="myRange" value={percentOfOperableLand} 
-                    onChange={e => setPercentOfOperableLand(e.target.value)}/>
+                    <h2>Percentage of Operatable Land: {numToMake * 10}%</h2>
+                    <input type="range" min="1" max="10" className="slider" id="myRange" value={numToMake} 
+                    onChange={e => setNumToMake(e.target.value)}/>
                 </div>
             </form>
         </>
