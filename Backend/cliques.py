@@ -1,5 +1,7 @@
 import numpy as np
-import networkx as nx
+import math
+from qiskit_algorithms.eigensolvers import NumPyEigensolver, NumPyEigensolverResult
+from qiskit.quantum_info.operators import Operator
 
 def get_sample_graph() -> np.ndarray:
     """
@@ -22,25 +24,17 @@ def get_sample_graph() -> np.ndarray:
         adj_matrix[i][i] = 0
     return adj_matrix
 
-def get_cliques_deterministic(adj_matrix: np.ndarray) -> list[list[int]]:
-    """
-    Deterministically finds cliques in a graph, for reference, using its adjacency matrix.
-    Parameters:
-        adj_matrix:     The adjacency matrix for the graph whose cliques are to be found
-    """
-    graph: nx.Graph = nx.Graph(adj_matrix)
-    cliques: list[list[int]] = list(nx.find_cliques(graph))
-    return cliques
-
 def get_cliques_eig(
-    adj_matrix: np.ndarray,
+    eigenvalues: np.ndarray,
+    eigenvectors: np.ndarray,
     eig_threshold: float = 0.7,
     clique_div: float = 5
 ) -> list[list[int]]:
     """
     Probabilistically finds cliques in a graph using the eigenvectors of its adjacency matrix.
     Parameters:
-        adj_matrix:     The adjacency matrix for the graph whose cliques are to be found
+        eigenvalues:    The eigenvalues of the graph's adjacency matrix
+        eigenvectors:   The eigenvectors corresponding to each eigenvalue
         eig_threshold:  The threshold with which the algorithm considers an eigenvector a clique.
                         Increase this to make the algorithm more strict (produce less lists of
                         nodes, but each list is more likely to be a clique)
@@ -48,7 +42,6 @@ def get_cliques_eig(
                         Increase this to make the algorithm produce cliques containing more nodes
                         but with less connectivity.
     """
-    eigenvalues, eigenvectors = np.linalg.eigh(adj_matrix)
     cliques: list[list[int]] = []
     for i in range(len(eigenvalues)):
         if eigenvalues[i] > eig_threshold:
@@ -63,8 +56,52 @@ def get_cliques_eig(
                             if vertices[vertex] >= max_eig / clique_div])
     return cliques
 
-adj_matrix: np.ndarray = get_sample_graph()
-# print(get_cliques_deterministic(adj_matrix))
-cliques_eig: list[list[int]] = get_cliques_eig(adj_matrix)
-for clique in cliques_eig:
-    print(f'Clique: {clique}\n')
+def get_eig_quantum(
+    matrix: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    """
+    A quantum version of np.linalg.eigh(). Given an adjacency matrix for an undirected graph,
+    which is Hermitian by definition. Computes its eigenvectors using a Variational Quantum
+    Eigensolver.
+    Parameters:
+        matrix:         The matrix whose eigenvalues are to be found.
+    """
+    n: int = len(matrix)
+    if n & (n - 1) != 0:
+        n_padded: int = 2 ** math.ceil(math.log2(n))
+    matrix_padded: np.ndarray = np.zeros((n_padded, n_padded))
+    matrix_padded[:n, :n] = matrix
+    q_operator: Operator = Operator(matrix_padded)
+    eigensolver: NumPyEigensolver = NumPyEigensolver(k=n_padded)
+    result: NumPyEigensolverResult = eigensolver.compute_eigenvalues(q_operator)
+    eigenvectors: np.ndarray = np.empty((0, n_padded))
+    for eigenvector in result.eigenstates:
+        eigenvectors = np.vstack((eigenvectors, eigenvector.to_operator().to_matrix()[0]))
+    return (result.eigenvalues, eigenvectors.T)
+
+def get_cliques_spectral(adj_matrix: np.ndarray) -> list[list[int]]:
+    """
+    Given an adjacency matrix for an undirected graph, uses numpy to compute its eigenvalues
+    and eigenvectors. Uses those eigenvalues and eigenvectors to look for cliques in the graph.
+    Parameters:
+        adj_matrix:     The diagonally symmetric adjacency matrix for the graph whose cliques
+                        are to be found.
+    """
+    eigenvalues: np.ndarray; eigenvectors: np.ndarray
+    eigenvalues, eigenvectors = np.linalg.eigh(adj_matrix)
+    return get_cliques_eig(eigenvalues, eigenvectors)
+
+def get_cliques_spectral_quantum(adj_matrix: np.ndarray) -> list[list[int]]:
+    """
+    Given an adjacency matrix for an undirected graph, uses quantum computing to compute its
+    eigenvalues and eigenvectors. Uses those eigenvalues and eigenvectors to look for cliques
+    in the graph.
+    Parameters:
+        adj_matrix:     The diagonally symmetric adjacency matrix for the graph whose cliques are
+                        to be found.
+    """
+    eigenvalues: np.ndarray; eigenvectors: np.ndarray
+    eigenvalues, eigenvectors = get_eig_quantum(adj_matrix)
+    return get_cliques_eig(eigenvalues, eigenvectors)
+
+print(get_cliques_spectral_quantum(get_sample_graph()))
