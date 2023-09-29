@@ -14,7 +14,7 @@ const Parameters = ({setRelevantData, setNotableLocations}) => {
     const [data, setdata] = useState({'Cities': [], 'Sorted Cliques': [{}]});
 
     const colors = [
-        "#ff0000", "#ff3023", "#ff483a", "#ff5c50", "#ff6e64", "#ff8078", "#ff908b", "#ffa09d", "#ffb0ae", "#ffbfbf"
+        "#000000", "#1d1d1d", "#343434", "#4c4c4c", "#666666", "#828282", "#9e9e9e", "#bbbbbb", "#d9d9d9", "#f8f8f8"
     ];
     
     // Fetches the data from the backend and stores it in the data state whenever the renewable option changes.
