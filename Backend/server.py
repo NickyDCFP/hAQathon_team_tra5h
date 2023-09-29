@@ -1,31 +1,19 @@
-from flask import Flask
-import datetime
-import random
- 
-app = Flask(__name__)
-     
-#TODO
-'''
-Returns a dictionary that has 3 keys: solar, wind, and geothermal. 
-These keys will each have a sorted list from most ideal coordinates to least ideal coordinates.
-'''
-@app.route("/getsortedlists")
-def getSortedLists():
-    solar = getRandomSample()
-    wind = getRandomSample()
-    geothermal = getRandomSample()
-    print("hi")
-    return {
-        "solar": solar,
-        "wind": wind,
-        "geothermal": geothermal
-    }
+from flask import Flask, jsonify
+from parse_data import fetch_process_format_data
 
-def getRandomSample():
-    lst = []
-    for i in range(100):
-        lst.append([random.randrange(300, 500, 1) / 10, random.randrange(-1300, -1100, 1) / 10])
-    return lst
+app = Flask(__name__)
+cities: list[dict[str, any]]; sorted_cliques: list[dict[str, any]]
+
+@app.get('/api/data')
+def get_data() -> str:
+    """
+    Endpoint to return clique data.
+    """
+    return jsonify({
+        'Cities': cities,
+        'Sorted Cliques': sorted_cliques
+    })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    cities, sorted_cliques = fetch_process_format_data()
+    app.run()
